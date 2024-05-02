@@ -31,7 +31,7 @@ Overall, the Request Forum Application is an embodiment of a digital ecosystem t
 
 | UWA ID   |          Name            |    GitHub Username    |
 |----------|--------------------------|-----------------------|
-| 24096172 | Dhanyavi Goti            |                       |
-| 24095031 | Janki Prafulbhai Rangani |                       |
+| 24096172 | Dhanyavi Goti            | Dhanyavi08            |
+| 24095031 | Janki Prafulbhai Rangani | jankirangani          |
 | 24071255 | Xiaoyi Liu               | leah1leah1            |
 | 24022721 | Lian Liu                 | EN-JAEYUNSIM          |
