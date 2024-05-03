@@ -152,26 +152,6 @@ body{
     border-top: none;
 }
 
-.tabcontent .item {
-    padding: 10px 0;
-    background-color: #913798;
-}
-
-.tabcontent .item h3 {
-    margin: 0;
-    color: #333;
-}
-
-.tabcontent .item p {
-    font-size: 14px;
-    color: #666;
-}
-
-.tabcontent .item .stats {
-    font-size: 12px;
-    color: #999;
-}
-
 .request-box {
     height: 300px;
     background-color: #ffffff;
