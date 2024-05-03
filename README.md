@@ -27,6 +27,47 @@ Use of the application involves navigating through these views to post and respo
 
 Overall, the Request Forum Application is an embodiment of a digital ecosystem that prioritizes user engagement and collective problem-solving, aiming to build a vibrant and supportive online community.
 
+
+
+#### Color pallete:
+please refer to hex codes from the website: https://www.color-hex.com/
+The color palletes:
+1. https://colors.muz.li/palette/5e2b7e/ff6f61/2ec4b6/e0e0e0/ffd166
+2. https://colors.muz.li/palette/FF6B6B/6b5bff/ffc66b/f0f0f0/5bffa3
+3. https://colors.muz.li/palette/7F00FF/00ffd5/ff4d00/f8f8f8/ffd700
+4. https://colors.muz.li/palette/2D3142/6a0572/ff9f1c/e0e0e0/00a8cc
+
+
+
+#### Division of work:
+
+janki: Intro page, login page, signup page
+Xiaoyi: Dashboard, request page
+Dhanyavi: Create request page, answer request page
+Lian: User profile page
+
+
+
+#### flie structure:
+please refer to this file structure:
+folders:
+1. public:
+  - index.html(main file which will just have reference of other pages)
+2. src:
+  - files:
+    * the js and html files that we're making
+  - CSS:
+    * all the css files
+  - img:
+    * the images that we're using
+  - Auth:
+    * authentication file(backend part)
+  - index.js
+3. Readme.md
+4..gitignore and any other files
+
+
+
 ## Team Members
 
 | UWA ID   |          Name            |    GitHub Username    |
