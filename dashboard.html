@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--logo & title on brower--> 
+    <link rel="icon" href="images/diy.png"> 
+    <title>Dashboard - DIY Corner</title>
+        
+    <!--css-->
+    <link rel="stylesheet" href="/css/dashboard.css"> 
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="dashboard.html" class="logo-box">
+                    <img src="images/diy.png" alt="logo">
+                    <h1 class="logo-title">DIY Corner</h1>
+                </a>
+            </div>
+            <div class="search">
+                <form method="get" action="/search.html" class="search-bar">
+                    <input name="keywords" id="keywords" class="input-text" placeholder="Search DIY Events" type="text">
+                    <input name="submit" class="input-submit" value="Search" type="submit">
+                </form>
+            </div>
+            <div class="user-links" id="user-links">
+                <!-- 登录前显示 Log In 和 Sign Up -->
+                <a href="/login">Log In</a>
+                <a href="/signup">Sign Up</a>
+                <!-- 登录后将替换为 My Account -->
+            </div>
+        </div>
+    </header>  
+    
+    <main>
+        <div class="main-container">
+            <div class="main-left">
+                <div class="main-left-nav">
+                    <button class="tablink" onclick="openTab(event, 'Following')">Following</button>
+                    <button class="tablink" onclick="openTab(event, 'Trending')">Trending</button>
+                    <button class="tablink" onclick="openTab(event, 'WaitForAnswer')">Wait for Answering</button>
+                </div>
+                <div id="postsContainer" class="content-box">
+                    <div id="Following" class="tabcontent">
+                        <h2>Following</h2>
+                        <p>Content for Following...</p>
+                    </div>
+                    <div id="Trending" class="tabcontent">
+                        <h2>Trending</h2>
+                        <p>Content for Trending...</p>
+                    </div>
+                    <div id="WaitForAnswer" class="tabcontent">
+                        <h2>Wait for Answering</h2>
+                        <p>Content waiting for answers...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="main-right">
+                <div class="request-box">
+                    <h2>Create A Request</h2>
+                </div>
+                <div class="category-box">
+                    <h2>Popular Articles</h2>                  
+                </div>
+                <div class="collection-box">
+                    <h2>My collection</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/scripts/dashboard.js"></script>
+</body>
+</html>
