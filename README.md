@@ -52,6 +52,7 @@ Lian: User profile page
 
 #### flie structure:
 please refer to this file structure:
+
 folders:
 1. public:
   - index.html(main file which will just have reference of other pages)
@@ -66,7 +67,8 @@ folders:
     * authentication file(backend part)
   - index.js
 3. Readme.md
-4..gitignore and any other files
+4. .gitignore and any other files
+5. deliverables
 
 
 
