@@ -1,4 +1,4 @@
-# CITS5505-Group-Project
+# CITS5505-Group-Project 
 
 a description of the purpose of the application, explaining the its design and use.
 a table with with each row containing the i) UWA ID ii) name and iii) Github user name of the group members.
@@ -80,3 +80,13 @@ folders:
 | 24095031 | Janki Prafulbhai Rangani | jankirangani          |
 | 24071255 | Xiaoyi Liu               | leah1leah1            |
 | 24022721 | Lian Liu                 | EN-JAEYUNSIM          |
+
+
+#### extra content:
+
+for font family please visit: https://www.w3schools.com/howto/tryit.asp?font=Brygada%201918
+
+you are welcome to change this, i have just added it initially in intro page.
+
+
+##### can anyone find a name of the website and put it instead of AGILE WEB PROJECT

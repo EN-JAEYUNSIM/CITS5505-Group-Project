@@ -1,0 +1,68 @@
+body{
+    background: url(../content/1699.jpg) no-repeat center center fixed #000; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    }
+
+.blur-back-navbar{
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    height: 10%;
+    margin: 5px 5px 5px 5px;
+    border-radius: 15px;
+}
+
+.blur-back-content{
+    background-color: rgba(255, 255, 255, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    height: 85%;
+    margin: 5px 5px 5px 5px;
+    border-radius: 15px;
+}
+
+.navbar{
+    width: 90%;
+    height: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+
+}
+ 
+.left-logo-name{
+    padding-left: 34px;
+    font-size: x-large;
+    font-family:'Brygada 1918';
+    color: #2D3142;
+}
+
+.content{
+    padding-top: 26px;
+    align-content: center;
+    margin: left 20%;
+    
+}
+
+.content h1 {
+    justify-content: center;
+    width: 60%;
+    padding-left: 20%;
+    text-align: center;
+    padding-bottom: 1%;
+    font-family:'Brygada 1918';
+}
+.content p {
+    justify-content: center;
+    width: 60%;
+    padding-left: 20%;
+    text-align: center;
+    font-size: 21px;
+    line-height: 37px;
+    font-family:'Brygada 1918';
+
+}
+
