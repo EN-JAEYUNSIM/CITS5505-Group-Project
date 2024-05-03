@@ -31,6 +31,8 @@ Overall, the Request Forum Application is an embodiment of a digital ecosystem t
 
 #### Color pallete:
 please refer to hex codes from the website: https://www.color-hex.com/
+the color pallete includes:
+1. main color, 2. complementry color, 3. action color, 4.background color(which is not white), 5.additional color 
 The color palletes:
 1. https://colors.muz.li/palette/5e2b7e/ff6f61/2ec4b6/e0e0e0/ffd166
 2. https://colors.muz.li/palette/FF6B6B/6b5bff/ffc66b/f0f0f0/5bffa3
