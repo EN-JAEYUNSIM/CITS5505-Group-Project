@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
 });
 
-// Following/Trending/Waitforanswering tags
+// Videos/Trending/Waitforanswering tags
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
