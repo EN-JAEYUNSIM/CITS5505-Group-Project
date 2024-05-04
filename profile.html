@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <header class="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="profile.html" class="logo-box">
+                    <img src="images/diy.png" alt="logo">
+                    <h1 class="logo-title">DIY Corner</h1>
+                </a>
+            </div>
+            <div class="search">
+                <form method="get" action="/search.html" class="search-bar">
+                    <input name="keywords" id="keywords" class="input-text" placeholder="Search DIY Events" type="text">
+                    <input name="submit" class="input-submit" value="Search" type="submit">
+                </form>
+            </div>
+            <div class="user-links" id="user-links">
+                <a href="/login">Log In</a>
+                <a href="/signup">Sign Up</a>
+            </div>
+        </div>
+    </header> 
+
+    <div class="profile-header">
+            <img src="images/profile_avatar.jpg" alt="Profile Image" class="profile-img">
+            <h1>user name</h1>
+            <p >0 followers · 0 following</p>
+            <p >Write a description about yourself</p>
+    </div>
+
+    <main>
+        <div class="main-container">
+            <div class="main-left">
+                <div class="main-left-nav">
+                    <button class="tablink">My Profile</button>
+                    <button class="tablink">My answers</button>
+                    <button class="tablink">My requests</button>
+                    <button class="tablink">History</button>
+                    <button class="tablink">followers</button>
+                    <button class="tablink">Following</button>
+                    <button class="tablink">Notifications</button>
+                </div>
+                <div id="postsContainer" class="content-box">
+                    <div id="Following" class="tabcontent">
+                        <h2>Following</h2>
+                        <p>Content for Following...</p>
+                    </div>
+                    <div id="Trending" class="tabcontent">
+                        <h2>Trending</h2>
+                        <p>Content for Trending...</p>
+                    </div>
+                    <div id="WaitForAnswer" class="tabcontent">
+                        <h2>Wait for Answering</h2>
+                        <p>Content waiting for answers...</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
