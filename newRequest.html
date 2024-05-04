@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create DIY Project Request - DIY Corner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/newRequest.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="request-box">
+            <div class="logo-container">
+                <img src="images/diy.png" alt="DIY Corner Logo" class="logo">
+            <h2 class="text-center mb-4">Create A Request</h2>
+            <form id="requestForm">
+                <div class="form-group">
+                    <label for="title">Project Title *</label>
+                    <input type="text" class="form-control" id="title" placeholder="Enter title" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Project Description *</label>
+                    <textarea class="form-control" id="description" rows="3" placeholder="Enter description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="materials">Materials Needed *</label>
+                    <input type="text" class="form-control" id="materials" placeholder="Enter materials" required>
+                </div>
+                <div class="form-group">
+                    <label for="requirements">Specific Requirements or Preferences</label>
+                    <textarea class="form-control" id="requirements" rows="3" placeholder="Enter requirements or preferences"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tags">Tags or Categories</label>
+                    <input type="text" class="form-control" id="tags" placeholder="Enter tags or categories">
+                    <small id="tagsHelp" class="form-text text-muted">Separate tags with commas (e.g., woodworking, sewing, home decor).</small>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+</body>
+</html>
