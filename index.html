@@ -9,27 +9,48 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div class="blur-back-navbar">
-        <nav class="navbar">
-            <div class="left-logo-name">
-                AGILE WEB PROJECT
+    <header class="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html" class="logo-box">
+                    <img src="images/diy.png" alt="logo">
+                    <h1 class="logo-title">DIY Corner</h1>
+                </a>
             </div>
-        </nav>
-    </div>
-    <div class="blur-back-content">
+            <div class="search">
+                <form method="get" action="/search.html" class="search-bar">
+                    <input name="keywords" id="keywords" class="input-text" placeholder="Search DIY Events" type="text">
+                    <input name="submit" class="input-submit" value="Search" type="submit">
+                </form>
+            </div>
+            <div class="user-links" id="user-links">
+                <a href="/login">Log In</a>
+                <a href="/signup">Sign Up</a>
+            </div>
+        </div>
+    </header> 
+    <div class="banner">
         <div class="content">
-        
             <h1>
-            Welcome to AGILE WEB PROJECT 
+            DESIGN YOUR OWN
             </h1> 
             <p>
-                Your go-to destination for all things DIY! Whether you're a seasoned DIY enthusiast or just dipping your toes into the world of hands-on projects, our platform is designed to be your ultimate resource hub. Have a burning question about a DIY project? Need guidance on your latest endeavor? Look no further. Ask your questions, share your expertise, and dive into a community of like-minded individuals passionate about creating and innovating.
-
-                Explore a plethora of DIY projects, from simple hacks to intricate crafts, and find inspiration to fuel your creativity. Dive into trending questions to stay up-to-date with the latest buzz in the DIY world. Not sure where to start? Use our search feature to find relevant topics based on keywords and discover solutions tailored to your needs.
-
-                Track the progress of your questions and save valuable insights from others for future reference. But before you embark on your DIY journey, remember to sign up or log in to unlock the full potential of our platform. Join our growing community of DIY enthusiasts today and let's embark on this creative journey together!
-            </p>
+            Your go-to destination for all things DIY! <br>Whether you're a seasoned DIY enthusiast or just dipping your toes into the world of hands-on projects, <br>our platform is designed to be your ultimate resource hub.</p>
+            <button type="button" onclick="location.href='dashboard.html';"><span></span>LEARN MORE</button>
+            <button type="button" onclick="addBookmark();"><span></span>SUBSCRIBE</button>
+        </div>
     </div>
-    
+    <section id="instruction">
+    <div class="title-text">
+        <h1>INSTRUCTIONS</h1>
+        <p>Have a burning question about a DIY project? Need guidance on your latest endeavor? <br>Look no further. Ask your questions, share your expertise, and dive into a community of like-minded individuals passionate about creating and innovating.
+
+        <br>Explore a plethora of DIY projects, from simple hacks to intricate crafts, and find inspiration to fuel your creativity. <br>Dive into trending questions to stay up-to-date with the latest buzz in the DIY world. <br>Not sure where to start? Use our search feature to find relevant topics based on keywords and discover solutions tailored to your needs.
+
+        <br>Track the progress of your questions and save valuable insights from others for future reference. <br>But before you embark on your DIY journey, remember to sign up or log in to unlock the full potential of our platform. <br>Join our growing community of DIY enthusiasts today and let's embark on this creative journey together!
+        </p>
+    </div>
+    </section>
+    <script src="/scripts/index.js"></script>
 </body>
 </html>
