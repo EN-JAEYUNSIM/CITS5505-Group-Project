@@ -1,3 +1,8 @@
+*{
+	list-style: none;
+	text-decoration: none;
+}
+
 .banner {
     height: 100vh;
     width: 100%;
