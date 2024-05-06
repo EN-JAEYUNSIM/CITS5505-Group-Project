@@ -1,27 +1,12 @@
-body{
-    background: url(../images/1699.jpg) no-repeat center center fixed #000; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+.banner {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), url('../images/1699.jpg');
     background-size: cover;
-    }
-
-.blur-back-navbar{
-    background-color: rgba(255, 255, 255, 0.4);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-    height: 10%;
-    margin: 5px 5px 5px 5px;
-    border-radius: 15px;
-}
-
-.blur-back-content{
-    background-color: rgba(255, 255, 255, 0.4);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    height: 85%;
-    margin: 5px 5px 5px 5px;
-    border-radius: 15px;
+    background-position: center;
+    padding-top: 75px;
+    color: #e77eee;
+    font-family: 'Brygada 1918';
 }
 
 .navbar{
@@ -29,40 +14,165 @@ body{
     height: 10%;
     padding-top: 10px;
     padding-bottom: 10px;
-    
 
-}
- 
-.left-logo-name{
-    padding-left: 34px;
-    font-size: x-large;
-    font-family:'Brygada 1918';
-    color: #2D3142;
 }
 
 .content{
-    padding-top: 26px;
-    align-content: center;
-    margin: left 20%;
-    
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color:#ef8ef6;
 }
 
 .content h1 {
-    justify-content: center;
-    width: 60%;
-    padding-left: 20%;
-    text-align: center;
-    padding-bottom: 1%;
-    font-family:'Brygada 1918';
+    font-size: 60px;
+    margin-top: 80px;
 }
+
 .content p {
-    justify-content: center;
-    width: 60%;
-    padding-left: 20%;
-    text-align: center;
-    font-size: 21px;
-    line-height: 37px;
-    font-family:'Brygada 1918';
+    margin: 20px auto;
+    font-weight: bold;
+    line-height: 25px;
+}  
 
+button {
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #e77eee;
+    background: transparent;
+    color: #e77eee;
+    cursor: pointer;
+    position: relative;
+    
 }
 
+span {
+    background: #6a0572;
+    height: 100%;
+    width: 100%;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+button:hover span {
+    width: 100%;
+}
+
+button:hover {
+    border: none;
+}   
+
+#instruction {
+    width: 100%;
+    padding: 70px 0;
+}
+
+.title-text {
+    text-align: center;
+    padding-bottom: 70px;
+    font-family: 'Brygada 1918';
+    color: #6a0572;
+}
+
+.title-text h1{
+    font-size: 50px;
+    margin: auto;
+    font: 20px;
+}
+
+.title-text p{
+    font-size: 20px;
+    word-spacing: 2px;
+    letter-spacing: 1px;  /* 调整字间距 */
+    line-height: 1.4;     /* 调整行高 */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px 1px #f0e7f0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+}
+
+.logo-box img {
+    width: 40px;
+    height: auto;
+    margin: 10px;
+}
+
+.logo-box h1 {
+    color: #6a0572;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.input-text {
+    width: 300px;
+    height: 30px;
+    padding: 0px 10px;
+    background-color: #f8f9fa;
+    color: #6a0572;
+    border-style: solid;
+    border-color: #e0e0e0;
+    border-width: 1px;
+    border-radius: 20px;
+    margin-right: 10px;
+    outline: none;
+}
+
+.input-submit {
+    width: 70px;
+    height: 32px;
+    border: none;
+    border-radius: 20px;
+    background-color: #913798;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+.input-submit:hover {
+    background-color: #c151c9;
+}
+
+#user-links {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+#user-links a {
+    margin: 0 10px;
+    color: #6a0572;
+    font-size: 16px;
+}
