@@ -1,0 +1,40 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 100px; 
+    margin-bottom: 100px;
+}
+
+.request-box {
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+   
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo {
+    width: 100px; 
+    height: auto;
+    margin-bottom: 20px;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+}
+

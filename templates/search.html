@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--logo & title on brower--> 
+    <link rel="icon" href="images/diy.png"> 
+    <title>Search Results - DIY Corner</title>
+            
+    <!--css-->
+    <link rel="stylesheet" href="css/dashboard-search.css"> 
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="dashboard.html" class="logo-box">
+                    <img src="images/diy.png" alt="logo">
+                    <h1 class="logo-title">DIY Corner</h1>
+                </a>
+            </div>
+            <div class="search">
+                <form method="get" action="/search.html" class="search-bar">
+                    <input name="keywords" id="keywords" class="input-text" placeholder="Search DIY Events" type="text">
+                    <input name="submit" class="input-submit" value="Search" type="submit">
+                </form>
+            </div>
+            <div class="user-links" id="user-links">
+                <a href="/login">Log In</a>
+                <a href="/signup">Sign Up</a>
+            </div>
+        </div>
+    </header>  
+    <main>
+        <h1>Search Results</h1>
+        {% for result in results %}
+        <div>{{ result }}</div>
+        {% endfor %}
+    </main>
+</body>
+</html>
