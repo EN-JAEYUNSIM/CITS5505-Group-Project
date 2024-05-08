@@ -10,24 +10,24 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        # 登录验证逻辑
+        
         pass
     return render_template('login.html', form=form)
 
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        # 注册逻辑
+        
         pass
-    return render_template('register.html', form=form)
+    return render_template('signup.html', form=form)
 
 def create_request():
     form = PostForm()
     if form.validate_on_submit():
-        # 创建帖子逻辑
+        
         pass
-    return render_template('create_requests.html', form=form)
+    return render_template('newRequest.html', form=form)
 
 def find_requests():
-    # 查找帖子逻辑
+    
     pass
