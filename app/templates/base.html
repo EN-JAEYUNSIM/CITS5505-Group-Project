@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
-    <title>{{ title }} - Microblog</title>
+    <link rel="icon" href="../static/images/diy.png">
+    <title>{{ title }} - DIY Corner</title>
     {% else %}
+    <link rel="icon" href="../static/images/diy.png">
     <title>Welcome to DIY Corner!</title>
     {% endif %}
+    <link rel="stylesheet" href="../static/css/dashboard-search.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+
+
+    <script src="../js/index.js"></script>
 </head>
 
 <body>
@@ -26,8 +33,8 @@
                 </form>
             </div>
             <div class="user-links" id="user-links">
-                <a href="login.html">Log In</a>
-                <a href="signup.html">Sign Up</a>
+                <a href="{{ url_for('login') }}">Log In</a>
+                <a href="{{ url_for('signup') }}">Sign Up</a>
             </div>
         </div>
     </header>

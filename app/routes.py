@@ -4,12 +4,11 @@ from flask_login import current_user, login_user
 import sqlalchemy as sa
 from app.models import User
 from werkzeug.security import generate_password_hash
-from app.forms import SignUpForm
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', title='Home')
 
 @app.route('/login')
 def login():
