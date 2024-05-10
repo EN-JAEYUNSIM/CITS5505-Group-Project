@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../static/css/dashboard-search.css">
     <link rel="stylesheet" href="../static/css/index.css">
 
-
     <script src="../js/index.js"></script>
 </head>
 
@@ -33,11 +32,25 @@
                 </form>
             </div>
             <div class="user-links" id="user-links">
+                {% if current_user.is_anonymous %}
                 <a href="{{ url_for('login') }}">Log In</a>
                 <a href="{{ url_for('signup') }}">Sign Up</a>
+                {% else %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
             </div>
         </div>
     </header>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
     {% block content %}{% endblock %}
 </body>
 </html>

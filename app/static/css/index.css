@@ -14,14 +14,6 @@
     font-family: 'Brygada 1918';
 }
 
-.navbar{
-    width: 90%;
-    height: 10%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-}
-
 .content{
     width: 100%;
     position: absolute;
@@ -57,21 +49,6 @@ button {
     
 }
 
-span {
-    background: #6a0572;
-    height: 100%;
-    width: 100%;
-    border-radius: 25px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-}
-
-button:hover span {
-    width: 100%;
-}
-
 button:hover {
     border: none;
 }   
@@ -99,85 +76,4 @@ button:hover {
     word-spacing: 2px;
     letter-spacing: 1px;  /* 调整字间距 */
     line-height: 1.4;     /* 调整行高 */
-}
-
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 0 5px 1px #f0e7f0;
-    z-index: 100;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-}
-
-.logo-box {
-    display: flex;
-    align-items: center;
-}
-
-.logo-box img {
-    width: 40px;
-    height: auto;
-    margin: 10px;
-}
-
-.logo-box h1 {
-    color: #6a0572;
-    font-size: 28px;
-    font-weight: 600;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-}
-
-.input-text {
-    width: 300px;
-    height: 30px;
-    padding: 0px 10px;
-    background-color: #f8f9fa;
-    color: #6a0572;
-    border-style: solid;
-    border-color: #e0e0e0;
-    border-width: 1px;
-    border-radius: 20px;
-    margin-right: 10px;
-    outline: none;
-}
-
-.input-submit {
-    width: 70px;
-    height: 32px;
-    border: none;
-    border-radius: 20px;
-    background-color: #913798;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    outline: none;
-}
-
-.input-submit:hover {
-    background-color: #c151c9;
-}
-
-#user-links {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-}
-
-#user-links a {
-    margin: 0 10px;
-    color: #6a0572;
-    font-size: 16px;
 }
