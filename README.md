@@ -6,7 +6,7 @@ a brief summary of the architecture of the application.
 instructions for how to launch the application.
 instructions for how to run the tests for the application.
 
-## Request Forum Application
+## DIY Request Forum Application
 
 #### Purpose of the Application
 The Request Forum Application is a community-driven platform designed to connect individuals seeking assistance, advice, or the exchange of goods and services with those who are willing to provide help. Envisioned as a versatile request-and-response ecosystem, the application enables users to create accounts, post requests, respond to others, and engage in a self-sustained cycle of support and collaboration.
@@ -27,6 +27,33 @@ Use of the application involves navigating through these views to post and respo
 
 Overall, the Request Forum Application is an embodiment of a digital ecosystem that prioritizes user engagement and collective problem-solving, aiming to build a vibrant and supportive online community.
 
+## Prerequisites
+Before you begin, ensure you have met the following requirements:
+* You have installed the latest version of Python and sqlite3.
+* You have a Windows/Linux/Mac machine.
+
+## Installation
+
+Follow these steps to get your development env running:
+
+1. Clone the repository:
+  
+   git clone https://github.com/EN-JAEYUNSIM/CITS5505-Group-Project.git
+   cd CITS5505-Group-Project
+
+2. Create a virtual environment:
+   python -m venv venv    # For Windows
+   virtualenv venv        # For Unix or MacOS
+
+3. Activate the virtual environment:
+   .\venv\Scripts\activate    # For Windows
+   source venv/bin/activate   # For Unix or MacOS
+
+4. Instal the required packages:
+   pip install -r requirements.txt
+
+3. Run the application:
+   flask run
 
 
 #### Color pallete:
