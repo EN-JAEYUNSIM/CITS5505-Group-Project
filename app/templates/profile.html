@@ -12,9 +12,9 @@
 <body>
     {% block content %}
     <div class="profile-header">
-            <h1>Hello, + user['username'] + !</h1>
+            <h1>Hello, {{ user.username }}!</h1>
             <img src="../static/images/profile_avatar.jpg" alt="Profile Image" class="profile-img">
-            <h1>user name</h1>
+            <h1>{{ user.username }}</h1>
             <p >0 followers · 0 following</p>
             <p >Write a description about yourself</p>
     </div>

@@ -1,22 +1,23 @@
-from app import db
-from app.models import *
+from app import create_app, db
+from app.models import User
 
-def create_tables():
-    db.create_all()
-    
-def add_users():
-    # 创建用户实例
-    user1 = User(username='Alice')
-    user1.set_password('password123')
+app = create_app()
 
-    user2 = User(username='Bob')
-    user2.set_password('password456')
+def create_test_users():
+    with app.app_context():  # 使用应用上下文
+        db.create_all()
+        user1 = User(username='Alice')
+        user1.set_password('password123')
 
-    # 将用户添加到数据库会话
-    db.session.add(user1)
-    db.session.add(user2)
+        user2 = User(username='Bob')
+        user2.set_password('password456')
 
-    # 提交会话以保存更改到数据库
-    db.session.commit()
+        db.session.add(user1)
+        db.session.add(user2)
+        db.session.commit()
+        
+        print("Users have been added to the database.")
 
-    print("Users have been added to the database.")
+if __name__ == "__main__":
+    create_test_users()
+    app.run(debug=True)

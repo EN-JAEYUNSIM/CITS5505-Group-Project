@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
-from app.models import User, Question, Answer   
+from app.models import User  
 
 @app.route('/')
 @app.route('/index')
@@ -13,20 +13,23 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    if request.method == 'GET':
-        return render_template('login.html', title='Log In', form=form)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            user = User.query.filter_by(username=form.username.data).first()
+            if user is None:
+                flash(f'No username found with {form.username.data}. Please try again.', 'error')
+                return render_template('login.html', title='Log In', form=form)
+            if not user.check_password(form.password.data):
+                flash('Invalid password. Please try again.', 'error')
+                return render_template('login.html', title='Log In', form=form)
+            
+            login_user(user, remember=form.remember_me.data)
+            flash('Logged in successfully!', 'success')
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Please correct errors in the form.', 'error') 
+    return render_template('login.html', title='Log In', form=form)
     
-    user = User.query.filter_by(username=form.username.data).first()
-    if user is None:
-        flash(f'No username found with {form.username.data}. Please try again.', 'error')
-        return render_template('login.html', title='Log In', form=form)
-    
-    if not user.check_password(form.password.data):
-        flash('Invalid password. Please try again.', 'error')
-        return render_template('login.html', title='Log In', form=form)
-    
-    login_user(user, remember=form.remember_me.data)
-    return redirect(url_for('dashboard'))
 
 @app.route('/logout')
 def logout():
@@ -39,7 +42,7 @@ def signup():
         return redirect(url_for('dashboard'))
     form = SignupForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -60,3 +63,8 @@ def profile(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('profile.html', user=user, posts=posts)
+
+@app.route('/show_users')
+def show_users():
+    users = User.query.all()
+    return '<br>'.join([user.username for user in users]) if users else "No users found"
