@@ -4,26 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Brygada 1918' rel='stylesheet'>
-
-    <title>AGILE PROJECT</title>
-    <link rel="stylesheet" href="../static/css/index.css">
+    
+    <!--title extend base.html-->
+    {% extends "base.html" %}
+    
+    <script src="../js/index.js"></script>
 </head>
 <body>
-    <header class="header">
-        <div class="navbar">
-            <div class="logo">
-                <a href="index.html" class="logo-box">
-                    <img src="../static/images/diy.png" alt="logo">
-                    <h1 class="logo-title">DIY Corner</h1>
-                </a>
-            </div>
-            
-            <div class="user-links" id="user-links">
-                <a href="login.html">Log In</a>
-                <a href="signup.html">Sign Up</a>
-            </div>
-        </div>
-    </header> 
+    {% block content %}
     <div class="banner">
         <div class="content">
             <h1>
@@ -31,7 +19,9 @@
             </h1> 
             <p>
             Your go-to destination for all things DIY! <br>Whether you're a seasoned DIY enthusiast or just dipping your toes into the world of hands-on projects, <br>our platform is designed to be your ultimate resource hub.</p>
-            <button type="button" onclick="location.href='dashboard.html';"><span></span>LEARN MORE</button>
+            <a href="{{ url_for('dashboard') }}" class="button">
+                <span>LEARN MORE</span>
+            </a>            
             <button type="button" onclick="addBookmark();"><span></span>SUBSCRIBE</button>
         </div>
     </div>
@@ -46,6 +36,6 @@
         </p>
     </div>
     </section>
-    <script src="../js/index.js"></script>
+    {% endblock %}
 </body>
 </html>
