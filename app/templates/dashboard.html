@@ -1,21 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!--title extend base.html-->
-    {% extends "base.html" %}    
-    <!--css-->
-    <link rel="stylesheet" href="../static/css/dashboard-search.css">     
-    
-    <!--js-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../static/js/dashboard.js"></script>
-</head>
+{% extends "base.html" %}
 
-<body>
-    {% block content %}
+{% block content %}
     <main>
         <div class="main-container">
             <div class="main-left">
@@ -67,7 +52,7 @@
             </div>
             <div class="main-right">
                 <div class="request-box">
-                    <a href="newRequest.html"><h2>Create A Request</h2></a>
+                    <a href="{{ url_for('post') }}"><h2>Create A Request</h2></a>
                 </div>
                 <div class="category-box">
                     <h2>Popular Articles</h2>                  
@@ -78,6 +63,4 @@
             </div>
         </div>
     </main>
-    {% endblock %}
-</body>
-</html>
+{% endblock %}
