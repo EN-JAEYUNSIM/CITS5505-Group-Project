@@ -1,34 +1,34 @@
 from app import app, db
-from flask import render_template, flash, redirect, url_for, request
-from app.forms import LoginForm, SignupForm, PostForm
+from flask import render_template, flash, redirect, url_for, request, session
+from app.forms import LoginForm, SignupForm, PostForm, CommentForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
-from app.models import User, Post  
+from app.models import User, Post, Comment  
 
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template('index.html', title='Home')
+    return render_template('index.html', title='Home', user=current_user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
+    login_form = LoginForm()
     if request.method == 'POST':
-        if form.validate_on_submit():
-            user = User.query.filter_by(username=form.username.data).first()
+        if login_form.validate_on_submit():
+            user = User.query.filter_by(username=login_form.username.data).first()
             if user is None:
-                flash(f'No username found with {form.username.data}. Please try again.', 'error')
-                return render_template('login.html', title='Log In', form=form)
-            if not user.check_password(form.password.data):
+                flash(f'No username found with {login_form.username.data}. Please try again.', 'error')
+                return render_template('login.html', title='Log In', form=login_form)
+            if not user.check_password(login_form.password.data):
                 flash('Invalid password. Please try again.', 'error')
-                return render_template('login.html', title='Log In', form=form)
+                return render_template('login.html', title='Log In', form=login_form)
             
-            login_user(user, remember=form.remember_me.data)
+            login_user(user, remember=login_form.remember_me.data)
             flash('Logged in successfully!', 'success')
             return redirect(url_for('dashboard'))
         else:
             flash('Please correct errors in the form.', 'error') 
-    return render_template('login.html', title='Log In', form=form)
+    return render_template('login.html', title='Log In', form=login_form)
     
 
 @app.route('/logout')
@@ -40,44 +40,50 @@ def logout():
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
-    form = SignupForm()
-    if form.validate_on_submit():
-        user = User(username=form.username.data)
-        user.set_password(form.password.data)
+    signup_form = SignupForm()
+    if signup_form.validate_on_submit():
+        user = User(username=signup_form.username.data)
+        user.set_password(signup_form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you signed up successfully!')
         return redirect(url_for('login'))
-    return render_template('signup.html', title='Singn Up', form=form)
+    return render_template('signup.html', title='Singn Up', form=signup_form)
 
 @app.route('/post', methods=['GET', 'POST'])
 @login_required
 def post():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(title=form.title.data,content=form.content.data, author=current_user)
+    post_form = PostForm()
+    if post_form.validate_on_submit():
+        post = Post(title=post_form.title.data,content=post_form.content.data, author=current_user, user_id=current_user.id)
         db.session.add(post)
         db.session.commit()
-        flash('Your post is now live!','success')
-        return redirect(url_for('dashboard'))
-    return render_template('post.html', title='New Post', form=form, Legend='New Post')    
+        flash('Your post is now live!', 'success')
+        return redirect(url_for('details', post_id=post.id))
+    return render_template('post.html', title='Create Post', form=post_form, Legend='New Post')    
+
+@app.route('/details/<int:post_id>', methods=['GET', 'POST'])
+@login_required
+def details(post_id):
+    post = Post.query.get_or_404(post_id)
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        comment = Comment(content=comment_form.content.data, author=current_user, post_id=post_id)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment is now live!', 'success')
+        return redirect(url_for('details', post_id=post_id))
+    return render_template('details.html', post=post, comments=comments, form=comment_form)
 
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
 
-@app.route('/profile/<username>')
+@app.route('/profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required
-def profile(username):
-    user = db.first_or_404(sa.select(User).where(User.username == username))
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
-    ]
-    return render_template('profile.html', user=user, posts=posts)
-
-@app.route('/show_users')
-def show_users():
-    users = User.query.all()
-    return '<br>'.join([user.username for user in users]) if users else "No users found"
-
+def profile(user_id):
+    user = User.query.get_or_404(user_id)
+    posts = Post.query.filter_by(author=user).all()
+    comments = Comment.query.filter_by(author=user).all()
+    return render_template('profile.html', user=user, posts=posts, comments=comments)
