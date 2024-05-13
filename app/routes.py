@@ -59,8 +59,8 @@ def post():
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!', 'success')
-        return redirect(url_for('details', post_id=post.id))
-    return render_template('post.html', title='Create Post', form=post_form, Legend='New Post')    
+        return redirect(url_for('details', post_id=post.id, user_id=current_user.id))
+    return render_template('post.html', title='Create Post', form=post_form, Legend='New Post', user=current_user)    
 
 @app.route('/details/<int:post_id>', methods=['GET', 'POST'])
 @login_required
@@ -73,12 +73,12 @@ def details(post_id):
         db.session.add(comment)
         db.session.commit()
         flash('Your comment is now live!', 'success')
-        return redirect(url_for('details', post_id=post_id))
-    return render_template('details.html', post=post, comments=comments, form=comment_form)
+        return redirect(url_for('details', post_id=post_id, user_id=current_user.id))
+    return render_template('details.html', post=post, comments=comments, form=comment_form, user=current_user, comment_form=comment_form)
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html', title='Dashboard')
+    return render_template('dashboard.html', title='Dashboard', user=current_user)
 
 @app.route('/profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required
