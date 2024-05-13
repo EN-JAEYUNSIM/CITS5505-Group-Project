@@ -26,8 +26,8 @@
                 </a>
             </div>
             <div class="search">
-                <form method="get" action="search.html" class="search-bar">
-                    <input name="keywords" id="keywords" class="input-text" placeholder="Search DIY Events" type="text">
+                <form method="get" action="{{ url_for('search') }}" method="GET" class="search-bar">
+                    <input name="keyword" id="keyword" class="input-text" placeholder="Search DIY Events" type="text">
                     <input name="submit" class="input-submit" value="Search" type="submit">
                 </form>
             </div>

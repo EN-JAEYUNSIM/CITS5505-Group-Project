@@ -87,3 +87,18 @@ def profile(user_id):
     posts = Post.query.filter_by(author=user).all()
     comments = Comment.query.filter_by(author=user).all()
     return render_template('profile.html', user=user, posts=posts, comments=comments)
+
+@app.route('/search')
+def search():
+    keyword = request.args.get('keyword')
+
+    if not keyword:
+        flash('Please enter a keyword to search for.', 'error')
+        return redirect(url_for('index'))
+
+    results = Post.query.filter((Post.title.ilike(f'%{keyword}%') | Post.content.ilike(f'%{keyword}%'))).all()
+    if not results:
+        flash('No results found for your search.', 'error')
+        return redirect(url_for('index'))
+
+    return render_template('search.html', results=results, keyword=keyword, user=current_user) 
