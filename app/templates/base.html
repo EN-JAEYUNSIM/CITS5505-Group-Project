@@ -34,11 +34,11 @@
             <div class="user-links" id="user-links">
                 <a href="{{ url_for('dashboard') }}">Dashboard</a>
                 {% if current_user.is_anonymous %}
-                <a href="{{ url_for('login') }}">Log In</a>
-                <a href="{{ url_for('signup') }}">Sign Up</a>
+                    <a href="{{ url_for('login') }}">Log In</a>
+                    <a href="{{ url_for('signup') }}">Sign Up</a>
                 {% else %}
-                <a href="{{ url_for('profile', username=current_user.username) }}">My Profile</a>
-                <a href="{{ url_for('logout') }}">Logout</a>
+                    <a href="{{ url_for('profile', user_id=user.id) }}">View Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
                 {% endif %}
             </div>
         </div>

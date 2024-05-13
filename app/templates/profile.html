@@ -1,53 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!--title extend base.html-->
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="../static/css/profile.css">
-</head>
-<body>
-    {% block content %}
+{% block content %}
     <div class="profile-header">
-            <h1>Hello, {{ user.username }}!</h1>
-            <img src="../static/images/profile_avatar.jpg" alt="Profile Image" class="profile-img">
-            <h1>{{ user.username }}</h1>
-            <p >0 followers · 0 following</p>
-            <p >Write a description about yourself</p>
+        <h1>Hello, {{ user.username }}!</h1>
+        <img src="../static/images/profile_avatar.jpg" alt="Profile Image" class="profile-img">
+        <h1>{{ user.username }}</h1>
+        <p >0 followers · 0 following</p>
+        <p >Write a description about yourself</p>
     </div>
 
-    <main>
-        <div class="main-container">
-            <div class="main-left">
-                <div class="main-left-nav">
-                    <button class="tablink">My Profile</button>
-                        <h1>User: {{ user.username }}</h1>
-                        <hr>
-                        {% for post in posts %}
-                        <p>
-                        {{ post.author.username }} says: <b>{{ post.body }}</b>
-                        </p>
-                        {% endfor %}
-                    <button class="tablink">My answers</button>
-                    <button class="tablink">My requests</button>
-                    <button class="tablink">History</button>
-                    <button class="tablink">followers</button>
-                    <button class="tablink">Following</button>
-                    <button class="tablink">Notifications</button>
-                </div>
-                <div id="postsContainer" class="content-box">
-                    <div id="Following" class="tabcontent">
-                        <h2>Content</h2>
-                        <p>Content TBC...</p>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-    {% endblock %}
-</body>
-</html>
+    <div>
+        <h1>{{ user.username }}'s Profile</h1>
+        <h2>My Posts</h2>
+        <ul>
+            {% for post in posts %}
+            <li><a href="{{ url_for('details', post_id=post.id) }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+        
+        <h2>My Comments</h2>
+        <ul>
+            {% for comment in comments %}
+            <li>On post <a href="{{ url_for('details', post_id=comment.post_id) }}">{{ comment.post.title }}</a>: {{ comment.content }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
