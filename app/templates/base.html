@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <link rel="icon" href="../static/images/diy.png">
+    <title>{{ title }} - DIY Corner</title>
+    {% else %}
+    <link rel="icon" href="../static/images/diy.png">
+    <title>Welcome to DIY Corner!</title>
+    {% endif %}
+    <link rel="stylesheet" href="../static/css/dashboard-search.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+
+    <script src="../static/js/index.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="navbar">
+            <div class="logo">
+                <a href="dashboard.html" class="logo-box">
+                    <img src="../static/images/diy.png" alt="logo">
+                    <h1 class="logo-title">DIY Corner</h1>
+                </a>
+            </div>
+            <div class="search">
+                <form method="get" action="{{ url_for('search') }}" method="GET" class="search-bar">
+                    <input name="keyword" id="keyword" class="input-text" placeholder="Search DIY Events" type="text">
+                    <input name="submit" class="input-submit" value="Search" type="submit">
+                </form>
+            </div>
+            <div class="user-links" id="user-links">
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                {% if current_user.is_anonymous %}
+                    <a href="{{ url_for('login') }}">Log In</a>
+                    <a href="{{ url_for('signup') }}">Sign Up</a>
+                {% else %}
+                    <a href="{{ url_for('profile', user_id=current_user.id) }}">View Profile</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+    {% block content %}{% endblock %}
+</body>
+</html>
+
+
+

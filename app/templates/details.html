@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <hr>
+    <h1>{{ post.title }}</h1>
+    <p>
+        <span>Author: {{ post.author.username }}</span>
+        <span>Date Posted: {{ post.date_posted.strftime('%Y-%m-%d') }}</span>
+    </p>
+    <p>{{ post.content }}</p>
+    <hr>
+    <h4>Comments</h4>
+    <form action="{{ url_for('details', post_id=post.id) }}" method="post">
+        {{ comment_form.hidden_tag() }}
+        <div class="form-group">
+            {{ comment_form.content(class="form-control", placeholder="Leave a comment...") }}
+            {% if comment_form.content.errors %}
+            <div class="alert alert-danger">
+                {% for error in comment_form.content.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Add a comment</button>
+    </form>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <span>{{ comment.author.username }}</span>
+            <span>{{ comment.date_posted.strftime('%Y-%m-%d') }}</span>
+            <p>{{ comment.content }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

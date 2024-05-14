@@ -1,5 +1,5 @@
 from flask import Flask
-from app.config import Config
+from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -11,4 +11,11 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 
-from app import models, routes
+
+from app import routes, models
+from app.models import User, Post, Comment
+with app.app_context():
+    db.create_all()
+
+if __name__ == '__main__':
+    app.run(debug=True)
