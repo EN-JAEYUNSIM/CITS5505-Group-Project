@@ -6,21 +6,6 @@
         <fieldset>
             <legend>{{ legend }}</legend>
             <div>
-                {{ form.title.label }}
-                {% if form.title.errors %}
-                    {{ form.title }}
-                    <div class="invalid-feedback">
-                        {% for error in form.title.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-
-                {% else %}
-                    {{ form.title }}
-
-                {% endif %}
-            </div>
-            <div>
                 {{ form.content.label }}
                 {% if form.content.errors %}
                     {{ form.content }}

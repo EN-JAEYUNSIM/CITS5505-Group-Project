@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../static/css/dashboard-search.css">
     <link rel="stylesheet" href="../static/css/index.css">
 
-    <script src="../js/index.js"></script>
+    <script src="../static/js/index.js"></script>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
                     <a href="{{ url_for('login') }}">Log In</a>
                     <a href="{{ url_for('signup') }}">Sign Up</a>
                 {% else %}
-                    <a href="{{ url_for('profile', user_id=user.id) }}">View Profile</a>
+                    <a href="{{ url_for('profile', user_id=current_user.id) }}">View Profile</a>
                     <a href="{{ url_for('logout') }}">Logout</a>
                 {% endif %}
             </div>
