@@ -28,7 +28,7 @@
     <ul>
         {% for comment in comments %}
         <li>
-            <span><img src="{{ post.author.avatar(36) }}">{{ comment.author.username }}</span>
+            <span><img src="{{ comment.author.avatar(36) }}">{{ comment.author.username }}</span>
             <span>{{ comment.date_posted.strftime('%Y-%m-%d') }}</span>
             <p>{{ comment.content }}</p>
         </li>
