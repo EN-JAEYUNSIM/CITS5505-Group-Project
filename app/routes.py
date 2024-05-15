@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, flash, redirect, url_for, request, session
-from app.forms import LoginForm, SignupForm, PostForm, CommentForm
+from app.forms import LoginForm, SignupForm, PostForm, CommentForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
 from app.models import User, Post, Comment  
@@ -29,7 +29,6 @@ def login():
         else:
             flash('Please correct errors in the form.', 'error') 
     return render_template('login.html', title='Log In', form=login_form)
-    
 
 @app.route('/logout')
 def logout():
@@ -88,17 +87,30 @@ def profile(user_id):
     comments = Comment.query.filter_by(author=user).all()
     return render_template('profile.html', user=user, posts=posts, comments=comments)
 
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    editprofile_form = EditProfileForm()
+    if editprofile_form.validate_on_submit():
+        current_user.about_me = editprofile_form.about_me.data
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('profile', user_id=current_user.id))
+    elif request.method == 'GET':
+        editprofile_form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', title='Edit Profile', form=editprofile_form, user=current_user)
+
 @app.route('/search')
 def search():
     keyword = request.args.get('keyword')
 
     if not keyword:
         flash('Please enter a keyword to search for.', 'error')
-        return redirect(url_for('index'))
+        return render_template('search.html', results=[], keyword=keyword, user=current_user)
 
     results = Post.query.filter((Post.title.ilike(f'%{keyword}%') | Post.content.ilike(f'%{keyword}%'))).all()
     if not results:
         flash('No results found for your search.', 'error')
-        return redirect(url_for('index'))
 
-    return render_template('search.html', results=results, keyword=keyword, user=current_user) 
+    return render_template('search.html', results=results, keyword=keyword, user=current_user)
+ 

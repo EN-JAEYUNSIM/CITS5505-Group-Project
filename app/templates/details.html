@@ -4,7 +4,8 @@
     <hr>
     <h1>{{ post.title }}</h1>
     <p>
-        <span>Author: {{ post.author.username }}</span>
+        <span>Author: <img src="{{ post.author.avatar(36) }}"> {{ post.author.username }}</span>
+        <br>
         <span>Date Posted: {{ post.date_posted.strftime('%Y-%m-%d') }}</span>
     </p>
     <p>{{ post.content }}</p>
@@ -27,7 +28,7 @@
     <ul>
         {% for comment in comments %}
         <li>
-            <span>{{ comment.author.username }}</span>
+            <span><img src="{{ post.author.avatar(36) }}">{{ comment.author.username }}</span>
             <span>{{ comment.date_posted.strftime('%Y-%m-%d') }}</span>
             <p>{{ comment.content }}</p>
         </li>
