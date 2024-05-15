@@ -1,10 +1,9 @@
 from app import app, db
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from app.forms import LoginForm, SignupForm, PostForm, CommentForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
 from app.models import User, Post, Comment  
-from datetime import datetime, timezone
 
 @app.route('/')
 @app.route('/index')
@@ -30,7 +29,6 @@ def login():
         else:
             flash('Please correct errors in the form.', 'error') 
     return render_template('login.html', title='Log In', form=login_form)
-    
 
 @app.route('/logout')
 def logout():
@@ -56,13 +54,13 @@ def signup():
 def post():
     post_form = PostForm()
     if post_form.validate_on_submit():
-        post = Post(content=post_form.content.data, author=current_user, user_id=current_user.id)
+        post = Post(title=post_form.title.data,content=post_form.content.data, author=current_user, user_id=current_user.id)
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!', 'success')
         return redirect(url_for('details', post_id=post.id, user_id=current_user.id))
-    return render_template('post.html', form=post_form, Legend='New Post', user=current_user)   
-   
+    return render_template('post.html', title='Create Post', form=post_form, Legend='New Post', user=current_user)    
+
 @app.route('/details/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def details(post_id):
@@ -85,23 +83,22 @@ def dashboard():
 @login_required
 def profile(user_id):
     user = User.query.get_or_404(user_id)
-    posts = user.posts.order_by(Post.date_posted).all()
-    comments = Comment.query.filter_by(user_id=user.id).all()
+    posts = Post.query.filter_by(author=user).all()
+    comments = Comment.query.filter_by(author=user).all()
     return render_template('profile.html', user=user, posts=posts, comments=comments)
-
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    form = EditProfileForm()
-    if form.validate_on_submit():
-        current_user.about_me = form.about_me.data
+    editprofile_form = EditProfileForm()
+    if editprofile_form.validate_on_submit():
+        current_user.about_me = editprofile_form.about_me.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('profile', user_id=current_user.id))
     elif request.method == 'GET':
-        form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile',form=form)
+        editprofile_form.about_me.data = current_user.about_me
+    return render_template('edit_profile.html', title='Edit Profile', form=editprofile_form, user=current_user)
 
 @app.route('/search')
 def search():
@@ -109,17 +106,11 @@ def search():
 
     if not keyword:
         flash('Please enter a keyword to search for.', 'error')
-        return redirect(url_for('index'))
+        return render_template('search.html', results=[], keyword=keyword, user=current_user)
 
     results = Post.query.filter((Post.title.ilike(f'%{keyword}%') | Post.content.ilike(f'%{keyword}%'))).all()
     if not results:
         flash('No results found for your search.', 'error')
-        return redirect(url_for('index'))
 
-    return render_template('search.html', results=results, keyword=keyword, user=current_user) 
-
-@app.before_request
-def before_request():
-    if current_user.is_authenticated:
-        current_user.last_seen = datetime.now(timezone.utc)
-        db.session.commit()
+    return render_template('search.html', results=results, keyword=keyword, user=current_user)
+ 

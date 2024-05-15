@@ -1,34 +1,33 @@
 {% extends "base.html" %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/profile.css">
-</head>
-<body>
-    {% block content %}
+
+{% block content %}
     <div class="profile-header">
+        <h1>Hello, {{ user.username }}!</h1>
         <img src="{{ user.avatar(128) }}" alt="Profile Image" class="profile-img">
-        <h1>Hi! {{ user.username }}</h1>
         {% if user.about_me %}<p>{{ user.about_me }}</p>
+        {% endif %}
+        {% if user == current_user %}
+        <button class="tablink"><a href="{{ url_for('edit_profile') }}">Edit My Profile</a></button>
         {% endif %}
         {% if user.last_seen %}
         <p>Last seen on: {{ user.last_seen.strftime('%Y-%m-%d') }}</p>
         {% endif %}
     </div>
-    <div class="main-container">
-        {% if user == current_user %}
-        <button class="tablink">My post</button>
-        <button class="tablink"><a href="{{ url_for('edit_profile') }}">Edit My Profile</a></button>
-        {% endif %}
+
+    <div>
+        <h1>{{ user.username }}'s Profile</h1>
+        <h2>My Posts</h2>
+        <ul>
+            {% for post in posts %}
+            <li><a href="{{ url_for('details', post_id=post.id) }}">{{ post.title }}</a></li>
+            {% endfor %}
+        </ul>
+        
+        <h2>My Comments</h2>
+        <ul>
+            {% for comment in comments %}
+            <li>On post <a href="{{ url_for('details', post_id=comment.post_id) }}">{{ comment.post.title }}</a>: {{ comment.content }}</li>
+            {% endfor %}
+        </ul>
     </div>
-    <div class="post-container">
-        <hr>
-        {% for post in posts %}
-            {% include 'user_post.html' %}
-        {% endfor %}
-    </div>
-    {% endblock %}
-</body>
-</html>
+{% endblock %}
