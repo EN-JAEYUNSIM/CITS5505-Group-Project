@@ -1,0 +1,87 @@
+*{
+	list-style: none;
+	text-decoration: none;
+}
+
+.login-signup-form{
+    height: 100vh;
+    width: 100%;
+    background-image: url('../images/1699.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-signup-form h1 {
+    font-size: 26px;
+    color: #6a0572;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.login-signup-form form {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px
+}
+
+.login-signup-form form label {
+    color: #6a0572;
+}
+
+.login-signup-form form input[type="text"],
+.login-signup-form form input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #913798;
+    border-radius: 5px;
+    background-color: #fae8f3;
+    color: #6a0572;
+    margin-top: 10px;
+}
+
+.login-signup-form form input[type="submit"] {
+    width: 80px;
+    height: 35px;
+    border: none;
+    border-radius: 10px; 
+    background-color: #913798; 
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.login-signup-form form input[type="submit"]:hover {
+    background-color: #6a0572;
+}
+
+.login-signup-form form p {
+    margin-bottom: 10px;
+    color: #3f3f3f;
+}
+
+.login-signup-form form p a{
+    color: #913798;
+}
+
+.login-signup-form form p a:hover{
+    margin-left: 5px;
+    color: #6a0572;
+    text-decoration: underline;
+}
+
+.login-signup-form form p span {
+    color: red;
+    font-size: 16px;
+    display: block;
+    margin-top: 5px;
+}
