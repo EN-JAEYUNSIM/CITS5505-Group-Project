@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, EqualTo, Length
-from flask_wtf.file import FileField, FileAllowed
 import sqlalchemy as sa
 from app import db
 from app.models import User
@@ -25,15 +24,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired()])
+    title = TextAreaField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
-    image = FileField('Image', validators=[
-        FileAllowed(['jpg', 'png'], 'Images only!')
-    ])
     submit = SubmitField('Post')
 
 class CommentForm(FlaskForm):
-    content = StringField('Content', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Comment')
 
 class EditProfileForm(FlaskForm):

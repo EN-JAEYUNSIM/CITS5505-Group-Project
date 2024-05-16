@@ -1,10 +1,8 @@
 from app import app, db
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, session
 from app.forms import LoginForm, SignupForm, PostForm, CommentForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
-from werkzeug.utils import secure_filename
 import sqlalchemy as sa
-import os
 from app.models import User, Post, Comment  
 
 @app.route('/')
@@ -56,18 +54,7 @@ def signup():
 def post():
     post_form = PostForm()
     if post_form.validate_on_submit():
-        image = post_form.image.data
-        if image:
-            filename = secure_filename(image.filename)
-            image_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-            image.save(image_path)
-        post = Post(
-            title=post_form.title.data,
-            content=post_form.content.data, 
-            image=post_form.image.data, 
-            author=current_user, 
-            user_id=current_user.id
-        )
+        post = Post(title=post_form.title.data,content=post_form.content.data, author=current_user, user_id=current_user.id)
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!', 'success')
@@ -92,8 +79,8 @@ def details(post_id):
 def dashboard():
     form=PostForm()
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3)
-    return render_template('dashboard.html', title='Dashboard', user=current_user, posts=posts, form=form)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    return render_template('dashboard.html', title='Dashboard', user=current_user, posts=posts, form=form, page=page)
 
 @app.route('/profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required

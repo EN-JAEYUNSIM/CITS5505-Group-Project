@@ -1,34 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="posts-form">
-        <form action="{{ url_for('post') }}" method="post">
-            {{ form.hidden_tag() }}
-            <legend>{{ legend }}</legend>
-            <div>
+    <div class="forms-container">
+        <h1>Create a Post</h1>
+        <div class="posts-form-box">
+            <form action="{{ url_for('post') }}" method="post">
+                {{ form.hidden_tag() }}
                 {{ form.title.label }}
-                {{ form.title(size=64) }}
+                {{ form.title(class="posts-title") }}
                 {% for error in form.title.errors %}
                 <span>{{ error }}</span>
                 {% endfor %}
-            </div>
-            <div>
-                {{ form.content.label }}
-                {{ form.content(row=10) }}
-                {% for error in form.content.errors %}
-                <span>{{ error }}</span>
-                {% endfor %}
-            </div>
-            <div>
-                {{ form.image.label }}<br>
-                {{ form.image() }}
-                {% for error in form.image.errors %}
-                <span>[{{ error }}]</span>
-                {% endfor %}
-            </div>
-            <div>
+                
+                <p>
+                    {{ form.content.label }}
+                        {{ form.content(rows=10, cols=80, class="posts-content") }}
+                    {% for error in form.content.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </p>
+
                 {{ form.submit }}
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 {% endblock %}
