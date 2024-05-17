@@ -3,42 +3,43 @@
 	text-decoration: none;
 }
 
-.banner {
-    height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), url('../images/diy-background.jpg');
-    background-size: cover;
-    background-position: center;
-    padding-top: 75px;
+.index-container {
     color: #e77eee;
     font-family: 'Brygada 1918';
 }
 
-.content{
+.content {
     width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    height: 60vh;
+    background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.55)), url('../images/diy-background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     text-align: center;
-    color:#ef8ef6;
 }
 
 .content h1 {
-    font-size: 60px;
+    font-size: 54px;
     margin-top: 80px;
+    color:#ef8ef6;
 }
 
 .content p {
     margin: 20px auto;
     font-weight: bold;
     line-height: 25px;
+    color:#ef8ef6;
 }  
 
 .index-button {
     width: 200px;
     padding: 15px 0;
     text-align: center;
-    margin: 20px 10px;
+    margin: 10px;
     border-radius: 25px;
     font-weight: bold;
     border: 2px solid #e77eee;
@@ -46,34 +47,39 @@
     color: #e77eee;
     cursor: pointer;
     position: relative;
-    
+    transition: all 0.3s ease-in-out;
+}
+
+.index-button a {
+    font-weight: bold;
+    color: #e77eee;
 }
 
 .index-button:hover {
     border: none;
 }   
 
-#instruction {
-    width: 100%;
-    padding: 70px 0;
+.instruction {
+    margin: 30px 50px;
 }
 
 .title-text {
-    text-align: center;
+    text-align: justify;
     padding-bottom: 70px;
     font-family: 'Brygada 1918';
     color: #6a0572;
 }
 
 .title-text h1{
-    font-size: 50px;
-    margin: auto;
+    font-size: 42px;
+    margin: 20px 20px;
     font: 20px;
+    text-align: center;
 }
 
 .title-text p{
     font-size: 20px;
     word-spacing: 2px;
-    letter-spacing: 1px;  /* 调整字间距 */
-    line-height: 1.4;     /* 调整行高 */
+    letter-spacing: 1px; 
+    line-height: 1.6; 
 }
