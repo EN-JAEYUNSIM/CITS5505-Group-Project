@@ -10,8 +10,11 @@
     margin: 20px;
     margin-top: 100px;
     padding: 10px;
-    
     background-color: #fdf5fd;
+}
+
+.details-container img {
+    border-radius: 10px;
 }
 
 .details-container h1 {
@@ -108,7 +111,7 @@
     height: 200px;
     padding: 5px;
     margin-top: 5px;
-    border: 2px solid #0eb2f3;
+    border: 1px solid #0eb2f3;
     background-color: #f5fcff;
     border-radius: 10px;
     resize: vertical; 

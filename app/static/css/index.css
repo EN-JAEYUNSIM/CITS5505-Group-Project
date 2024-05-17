@@ -34,7 +34,7 @@
     line-height: 25px;
 }  
 
-button {
+.index-button {
     width: 200px;
     padding: 15px 0;
     text-align: center;
@@ -49,7 +49,7 @@ button {
     
 }
 
-button:hover {
+.index-button:hover {
     border: none;
 }   
 

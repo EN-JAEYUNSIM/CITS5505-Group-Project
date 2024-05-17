@@ -6,8 +6,7 @@
 .dashboard-container {
     display: flex;
     padding: 20px;
-    margin-top: 100px;
-    align-items: flex-start;
+    margin-top: 50px;
 }
 
 /* --- Dashboard Right --- */
@@ -22,7 +21,7 @@
     color: #6a0572;
     font-weight: 800;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .all-posts {
@@ -90,6 +89,19 @@
     font-weight: 500;
 }
 
+.pages a {
+    flex: 1;
+    font-size: 14px;
+    color: #6a0572;
+    font-weight: 500;
+}
+
+.pages a:hover {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 /* --- Dashboard Right --- */
 .dashboard-right{
     flex: 1;
@@ -99,8 +111,9 @@
     text-align: center;
     align-items: center;
     background-color: #e1f2fa;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 10px;
+    margin-top: 65px;
 }
 
 .create-button {
