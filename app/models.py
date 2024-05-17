@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(50), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    about_me = db.Column(db.String(140))
+    about_me = db.Column(db.Text, nullable=True)
     last_seen = db.Column(db.DateTime, nullable=False, default=datetime.now)
 
     def set_password(self, password):

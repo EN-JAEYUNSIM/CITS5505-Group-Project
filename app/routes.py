@@ -88,20 +88,18 @@ def profile(user_id):
     user = User.query.get_or_404(user_id)
     posts = Post.query.filter_by(author=user).all()
     comments = Comment.query.filter_by(author=user).all()
-    return render_template('profile.html', user=user, posts=posts, comments=comments)
 
-@app.route('/edit_profile', methods=['GET', 'POST'])
-@login_required
-def edit_profile():
     editprofile_form = EditProfileForm()
-    if editprofile_form.validate_on_submit():
-        current_user.about_me = editprofile_form.about_me.data
-        db.session.commit()
-        flash('Your changes have been saved.')
-        return redirect(url_for('profile', user_id=current_user.id))
-    elif request.method == 'GET':
+    if request.method == 'POST' and editprofile_form.validate_on_submit():
+        if user == current_user:
+            current_user.about_me = editprofile_form.about_me.data
+            db.session.commit()
+            flash('Your changes have been saved.')
+            return redirect(url_for('profile', user_id=current_user.id))
+    elif request.method == 'GET' and user == current_user:
         editprofile_form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html', title='Edit Profile', form=editprofile_form, user=current_user)
+
+    return render_template('profile.html', user=user, posts=posts, comments=comments, form=editprofile_form)
 
 @app.route('/search')
 def search():

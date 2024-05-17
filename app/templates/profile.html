@@ -1,33 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="profile-header">
-        <h1>Hello, {{ user.username }}!</h1>
-        <img src="{{ user.avatar(128) }}" alt="Profile Image" class="profile-img">
-        {% if user.about_me %}<p>{{ user.about_me }}</p>
-        {% endif %}
-        {% if user == current_user %}
-        <button class="tablink"><a href="{{ url_for('edit_profile') }}">Edit My Profile</a></button>
-        {% endif %}
-        {% if user.last_seen %}
-        <p>Last seen on: {{ user.last_seen.strftime('%Y-%m-%d') }}</p>
-        {% endif %}
+<div class="profile-container">
+    <div class="profile-left">
+        <div>
+            <h1>Hello, {{ user.username }} !</h1>
+            <img src="{{ user.avatar(128) }}" alt="Avatar">
+            <p class="aboutme-label">About me:</p>
+            <span id="about-me-text">{{ user.about_me }}</span>
+        </div>
+        <div>
+            {% if user == current_user %}
+                <button id="edit-profile-button">Edit My Profile</button>
+                <div id="edit-profile-form" style="display: none;">
+                    <form id="edit-form" action="{{ url_for('profile', user_id=user.id) }}" method="post">
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ form.about_me.label(class="aboutme-label") }}<br>
+                            {{ form.about_me(class="aboutme-input") }}<br>
+                            {% for error in form.about_me.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </p>
+                        <p>
+                            <button type="submit">Save my profile</button>
+                        </p>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
     </div>
-
-    <div>
-        <h1>{{ user.username }}'s Profile</h1>
-        <h2>My Posts</h2>
-        <ul>
-            {% for post in posts %}
-            <li><a href="{{ url_for('details', post_id=post.id) }}">{{ post.title }}</a></li>
-            {% endfor %}
-        </ul>
-        
-        <h2>My Comments</h2>
-        <ul>
-            {% for comment in comments %}
-            <li>On post <a href="{{ url_for('details', post_id=comment.post_id) }}">{{ comment.post.title }}</a>: {{ comment.content }}</li>
-            {% endfor %}
-        </ul>
+    <div class="profile-right">
+        <h1>{{ user.username }}'s activities</h1>
+        <div>
+            <h2>My Posts</h2>
+            <ul>
+                {% for post in posts %}
+                <li><a href="{{ url_for('details', post_id=post.id) }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2>My Comments</h2>
+            <ul>
+                {% for comment in comments %}
+                <li>On post <a href="{{ url_for('details', post_id=comment.post_id) }}">{{ comment.post.title }}</a>: {{ comment.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
+</div>
 {% endblock %}
