@@ -10,8 +10,12 @@
     <link rel="icon" href="../static/images/diy.png">
     <title>Welcome to DIY Corner!</title>
     {% endif %}
-    <link rel="stylesheet" href="../static/css/dashboard-search.css">
+    <link rel="stylesheet" href="../static/css/base.css">
     <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/details.css">
+    <link rel="stylesheet" href="../static/css/forms.css">
+    <link rel="stylesheet" href="../static/css/profile.css">
 
     <script src="../static/js/index.js"></script>
 </head>
@@ -20,18 +24,18 @@
     <header class="header">
         <div class="navbar">
             <div class="logo">
-                <a href="dashboard.html" class="logo-box">
+                <a href="{{ url_for('index') }}" class="logo-box">
                     <img src="../static/images/diy.png" alt="logo">
-                    <h1 class="logo-title">DIY Corner</h1>
+                    <h1>DIY Corner</h1>
                 </a>
             </div>
-            <div class="search">
-                <form method="get" action="{{ url_for('search') }}" method="GET" class="search-bar">
+            <div class="search-box">
+                <form action="{{ url_for('search') }}" method="GET" class="search-bar">
                     <input name="keyword" id="keyword" class="input-text" placeholder="Search DIY Events" type="text">
                     <input name="submit" class="input-submit" value="Search" type="submit">
                 </form>
             </div>
-            <div class="user-links" id="user-links">
+            <div class="nav-links">
                 <a href="{{ url_for('dashboard') }}">Dashboard</a>
                 {% if current_user.is_anonymous %}
                     <a href="{{ url_for('login') }}">Log In</a>

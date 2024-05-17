@@ -1,37 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <hr>
-    <h1>{{ post.title }}</h1>
-    <p>
-        <span>Author: <img src="{{ post.author.avatar(36) }}"> {{ post.author.username }}</span>
-        <br>
-        <span>Date Posted: {{ post.date_posted.strftime('%Y-%m-%d') }}</span>
-    </p>
-    <p>{{ post.content }}</p>
-    <hr>
-    <h4>Comments</h4>
-    <form action="{{ url_for('details', post_id=post.id) }}" method="post">
-        {{ comment_form.hidden_tag() }}
-        <div class="form-group">
-            {{ comment_form.content(class="form-control", placeholder="Leave a comment...") }}
-            {% if comment_form.content.errors %}
-            <div class="alert alert-danger">
-                {% for error in comment_form.content.errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
+    <div class="details-container">
+        <h1>{{ post.title }}</h1>
+        <p class="details-author">Author: <img src="{{ post.author.avatar(48) }}"> {{ post.author.username }}</p>
+        <p class="details-date">Date Posted: {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+        <p class="details-content">{{ post.content}}</p>
+        <div class="comment-box">
+            <div class="comment-details">
+                <p>Comments</p>
+                <div class="comment-list">
+                    {% for comment in comments %}
+                        <img src="{{ comment.author.avatar(36) }}">{{ comment.author.username }}
+                        {{ comment.date_posted.strftime('%Y-%m-%d') }}
+                        <p class="comment-content">{{ comment.content }}</p>
+                    {% endfor %}
+                </div>
             </div>
-            {% endif %}
+            <div class="comment-form">
+                <p>Add a comment</p>
+                <form action="{{ url_for('details', post_id=post.id) }}" method="post">
+                    {{ comment_form.hidden_tag() }}
+                    {{ comment_form.content(class="comment-input", placeholder="Leave a comment...") }}
+                    <p>
+                        {% for error in comment_form.content.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </p>
+                    {{ comment_form.submit }}
+                </form>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Add a comment</button>
-    </form>
-    <ul>
-        {% for comment in comments %}
-        <li>
-            <span><img src="{{ comment.author.avatar(36) }}">{{ comment.author.username }}</span>
-            <span>{{ comment.date_posted.strftime('%Y-%m-%d') }}</span>
-            <p>{{ comment.content }}</p>
-        </li>
-        {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

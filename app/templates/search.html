@@ -1,25 +1,19 @@
+{% extends "base.html" %}
+
 {% block content %}
     <h1>Search Results for "{{ keyword }}"</h1>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul class="flashes">
-                {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
+    <div class="all-posts">
+        {% if results %}
+            <ul>
+                {% for post in results %}
+                <div class="all-posts-list">
+                    <h2><a href="{{ url_for('details', post_id=post.id) }}" class="all-posts-title">{{ post.title }}</a></h2>
+                    <p>{{ post.content[:150] }}...</p> 
+                </div>
                 {% endfor %}
             </ul>
+        {% else %}  
+            <p>No results found.</p>
         {% endif %}
-    {% endwith %}
-
-    {% if results %}
-        <ul>
-            {% for post in results %}
-            <div>
-                <h2><a href="{{ url_for('details', post_id=post.id) }}">{{ post.title }}</a></h2>
-                <p>{{ post.content[:150] }}...</p> 
-            </div>
-            {% endfor %}
-        </ul>
-    {% else %}  
-        <p>No results found.</p>
-    {% endif %}
+    </div>
 {% endblock %}

@@ -18,7 +18,7 @@
                     {{ form.password.label }}<br>
                     {{ form.password(size=32) }}
                     {% for error in form.password.errors %}
-                    <span>[{{ error }}]</span>
+                        <span>[{{ error }}]</span>
                     {% endfor %}
                 </p>
                 <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>

@@ -1,59 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a href="{{ url_for('post') }}"><h1>Create New Post</h1></a>
-    <div class="dashboard">
-        {% with legend="Create a New Post" %}
-            {% include 'post.html' %}
-        {% endwith %}
-    </div>
-    <h1>All Posts</h1>
-    <div>
-        {% for post in posts.items %}
-        <div class="post">
-            <h2><a href="{{ url_for('details', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <p>{{ post.content | truncate(200) }}</p> <!-- Truncates content after 200 characters -->
-            <a href="{{ url_for('details', post_id=post.id) }}">Read More</a>
+    <div class="dashboard-container">
+        <div class="dashboard-left">
+            <h1>Best of DIY - Latest Posts</h1>
+            <div class="all-posts">
+                {% for post in posts.items %}
+                <div class="all-posts-list">
+                    <a href="{{ url_for('details', post_id=post.id) }}" class="all-posts-title">{{ post.title }}</a>
+                    <p>{{ post.content | truncate(100) }}</p>
+                    <a href="{{ url_for('details', post_id=post.id) }}" class="read-more">Read More</a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="pages">
+                <p>
+                    {% if posts.has_prev %}
+                        <a href="{{ url_for('dashboard', page=posts.prev_num) }}">Previous page</a>
+                        {{ posts.prev_num }}
+                    {% endif %}
+                </p>
+                <p>Page {{ posts.page }} of {{ posts.pages }}</p>
+                <p>
+                    {% if posts.has_next %}
+                        <a href="{{ url_for('dashboard', page=posts.next_num) }}">Next page</a>
+                        {{ posts.next_num }}
+                    {% endif %}
+                </p>
+            </div>
         </div>
-        {% endfor %}
-    </div>
-    <div class="pagination">
-        {% if posts.has_prev %}
-            <a href="{{ url_for('dashboard', page=posts.prev_num) }}">Previous</a>
-        {% endif %}
-        {% if posts.has_next %}
-            <a href="{{ url_for('dashboard', page=posts.next_num) }}">Next</a>
-        {% endif %}
-    </div>
-    <h1>Learn DIY from Videos</h1>
-    
-    <div class="video-grid">
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/QVfEGFvIDnc?si=Cei9VK51KD9ou2X9" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>DIY Home Decor</p>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/x3GINpzPkXo?si=aq_kUpp5knVp_4PK" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>DIY Clothes</p>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/drT-Qp1PA30?si=W9aBeQiDM2I64Jkm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>DIY Paper Crafts</p>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/1yTz2Dg1V8s?si=DEHXNj5qmN1o7y_8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>DIY Jewellery</p>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/dSyzaiISa_c?si=clqrifn9rxREXZWs" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>DIY Gardening</p>
-        </div>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/TJV_AXYO528?si=p9VPyGlvpxyf-LCN" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>DIY Cakes</p>
+        <div class="dashboard-right">
+            <a href="{{ url_for('post') }}" class="create-button">Create New Post Here</a>
+            <h1>Learn DIY from Videos</h1>
+            <div class="video-grid">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/QVfEGFvIDnc?si=Cei9VK51KD9ou2X9" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>DIY Home Decor</p>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/x3GINpzPkXo?si=aq_kUpp5knVp_4PK" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>DIY Clothes</p>
+                    </div>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/drT-Qp1PA30?si=W9aBeQiDM2I64Jkm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p>DIY Paper Crafts</p>
+                    </div>
+            </div>   
         </div>
     </div>
-                    
-
-
+                 
 {% endblock %}
