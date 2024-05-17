@@ -79,7 +79,7 @@ def details(post_id):
 def dashboard():
     form=PostForm()
     page = request.args.get('page', 1, type=int)
-    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=10)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
     return render_template('dashboard.html', title='Dashboard', user=current_user, posts=posts, form=form, page=page)
 
 @app.route('/profile/<int:user_id>', methods=['GET', 'POST'])
@@ -105,15 +105,21 @@ def edit_profile():
 
 @app.route('/search')
 def search():
-    keyword = request.args.get('keyword')
-
+    keyword = request.args.get('keyword', '')
+    page = request.args.get('page', 1, type=int)
+    
     if not keyword:
         flash('Please enter a keyword to search for.', 'error')
         return render_template('search.html', results=[], keyword=keyword, user=current_user)
+    
+    results = Post.query.filter(
+        (Post.title.ilike(f'%{keyword}%') | 
+         Post.content.ilike(f'%{keyword}%'))
+    ).order_by(Post.date_posted.desc())
 
-    results = Post.query.filter((Post.title.ilike(f'%{keyword}%') | Post.content.ilike(f'%{keyword}%'))).all()
-    if not results:
+    posts = results.paginate(page=page, per_page=4)
+    
+    if posts.total == 0:
         flash('No results found for your search.', 'error')
 
-    return render_template('search.html', results=results, keyword=keyword, user=current_user)
- 
+    return render_template('search.html', results=posts.items, keyword=keyword, user=current_user, posts=posts)

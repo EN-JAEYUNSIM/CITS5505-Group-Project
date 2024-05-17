@@ -9,7 +9,7 @@ class SignupForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('signup')
+    submit = SubmitField('Sign up')
 
     def validate_username(self, username):
         user = db.session.scalar(sa.select(User).where(
@@ -21,17 +21,17 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Login')
+    submit = SubmitField('Log in')
 
 class PostForm(FlaskForm):
     title = TextAreaField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Post')
+    submit = SubmitField('Create new post')
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Comment')
+    submit = SubmitField('Add a comment')
 
 class EditProfileForm(FlaskForm):
     about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Edit profile')

@@ -166,3 +166,19 @@
     margin: 3px;
     text-align: center;
 }
+
+/* --- Search page --- */
+.search-container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.search-container h1{
+    font-size: 28px;
+    color: #6a0572;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 10px;
+}

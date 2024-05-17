@@ -1,19 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Search Results for "{{ keyword }}"</h1>
-    <div class="all-posts">
-        {% if results %}
-            <ul>
-                {% for post in results %}
+    <div class="search-container">
+        <h1>Search Results for "{{ keyword }}"</h1>
+        <div class="pages">
+            <p>
+                {% if posts.has_prev %}
+                    <a href="{{ url_for('search', keyword=keyword, page=posts.prev_num) }}">Previous page</a>
+                    {{ posts.prev_num }}
+                {% endif %}
+            </p>
+            <p>Page {{ posts.page }} of {{ posts.pages }}</p>
+            <p>
+                {% if posts.has_next %}
+                    <a href="{{ url_for('search', keyword=keyword, page=posts.next_num) }}">Next page</a>
+                    {{ posts.next_num }}
+                {% endif %}
+            </p>
+        </div>
+        <div class="all-posts">
+            {% if posts.items %}
+                {% for post in posts.items %}
                 <div class="all-posts-list">
                     <h2><a href="{{ url_for('details', post_id=post.id) }}" class="all-posts-title">{{ post.title }}</a></h2>
                     <p>{{ post.content[:150] }}...</p> 
                 </div>
                 {% endfor %}
-            </ul>
-        {% else %}  
-            <p>No results found.</p>
-        {% endif %}
+            {% else %}  
+                <p>No results found.</p>
+            {% endif %}
+        </div>
+        
     </div>
 {% endblock %}
