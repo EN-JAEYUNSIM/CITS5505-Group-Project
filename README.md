@@ -70,9 +70,9 @@ The color palletes:
 
 #### Division of work:
 
-janki: Intro page, login page, signup page
+janki: Intro page
 Xiaoyi: Dashboard, request page
-Dhanyavi: Create request page, answer request page
+Dhanyavi: Create request page, answer request page, Login page, Signup page
 Lian: User profile page
 
 
