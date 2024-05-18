@@ -22,6 +22,7 @@ Use of the application involves navigating through these views to post and respo
 Overall, the Request Forum Application is an embodiment of a digital ecosystem that prioritizes user engagement and collective problem-solving, aiming to build a vibrant and supportive online community.
 
 ## Architecture 
+```
 CITS5505-Group-Project
 ├── app
 │   ├── __init__.py
@@ -49,6 +50,7 @@ CITS5505-Group-Project
 ├── README.md
 ├── References
 └── run.py
+```
 
 ## Prerequisites
 Before you begin, ensure you have met the following requirements:
