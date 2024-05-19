@@ -5,7 +5,6 @@
 
 .index-container {
     color: #e77eee;
-    font-family: 'Brygada 1918';
 }
 
 .content {
@@ -66,7 +65,6 @@
 .title-text {
     text-align: justify;
     padding-bottom: 70px;
-    font-family: 'Brygada 1918';
     color: #6a0572;
 }
 
@@ -81,5 +79,5 @@
     font-size: 20px;
     word-spacing: 2px;
     letter-spacing: 1px; 
-    line-height: 1.6; 
+    line-height: 1.2; 
 }

@@ -3,7 +3,6 @@ venv/
 .venv/
 env/
 *.py[cod]
-app.db
 .DS_Store
 .idea/
 .vscode/

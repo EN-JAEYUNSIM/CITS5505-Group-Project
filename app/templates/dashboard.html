@@ -8,7 +8,7 @@
                 {% for post in posts.items %}
                 <div class="all-posts-list">
                     <a href="{{ url_for('main.details', post_id=post.id) }}" class="all-posts-title">{{ post.title }}</a>
-                    <p>{{ post.content | truncate(100) }}</p>
+                    <p>{{ post.content | truncate(200) }}</p>
                     <a href="{{ url_for('main.details', post_id=post.id) }}" class="read-more">Read More</a>
                 </div>
                 {% endfor %}

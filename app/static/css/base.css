@@ -1,6 +1,7 @@
-*{
+* {
 	list-style: none;
 	text-decoration: none;
+    font-family: Verdana, sans-serif;
 }
 
 .header {
@@ -85,8 +86,15 @@
     margin-right: 10px;
 }
 
-.nav-links a{
-    margin: 0 10px;
+.nav-links a {
+    margin-left: 20px;
     color: #6a0572;
-    font-size: 16px;    
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #913798;
+    font-weight: 600;    
 }

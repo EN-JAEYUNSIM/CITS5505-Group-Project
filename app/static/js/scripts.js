@@ -3,14 +3,14 @@ function addBookmark() {
     alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') != -1 ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
 }
 
-// For profile page: edit profile in the same page
+// For profile page: show and hide edit profile form
 $(document).ready(function() {
     $('#edit-profile-button').click(function() {
         $('#edit-profile-form').toggle();
     });
 
     $('#edit-form').submit(function(event) {
-        event.preventDefault();  
+        event.preventDefault();
         var aboutMeText = $('textarea[name="about_me"]').val();
         $.ajax({
             type: 'POST',
