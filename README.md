@@ -26,6 +26,7 @@ Overall, the Request Forum Application is an embodiment of a digital ecosystem t
 CITS5505-Group-Project
 ├── app
 │   ├── __init__.py
+│   ├── blueprints.py
 │   ├── forms.py
 │   ├── models.py
 │   ├── routes.py
@@ -48,7 +49,9 @@ CITS5505-Group-Project
 │   └── versions
 ├── requirements.txt
 ├── README.md
-├── References
+├── tests
+│   ├── selenium.py
+│   └── unit.py
 └── run.py
 ```
 
@@ -68,7 +71,7 @@ Follow these steps to get your development env running:
 
 2. Create a virtual environment:
    python -m venv venv    # For Windows
-   python3 -m venv venv       # For Unix or MacOS
+   python -m venv venv       # For Unix or MacOS
 
 3. Activate the virtual environment:
    .\venv\Scripts\activate    # For Windows

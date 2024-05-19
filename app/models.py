@@ -56,6 +56,3 @@ class Comment(db.Model):
 
     def __repr__(self) -> str:
         return f'<Comment {self.content}>'
-
-
-

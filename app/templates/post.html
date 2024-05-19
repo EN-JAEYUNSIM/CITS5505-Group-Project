@@ -4,7 +4,7 @@
     <div class="forms-container">
         <h1>Create a Post</h1>
         <div class="posts-form-box">
-            <form action="{{ url_for('post') }}" method="post">
+            <form action="{{ url_for('main.post') }}" method="post">
                 {{ form.hidden_tag() }}
                 {{ form.title.label }}
                 {{ form.title(class="posts-title") }}

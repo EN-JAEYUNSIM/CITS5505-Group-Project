@@ -1,16 +1,18 @@
-from app import app, db
+
+from app import db
 from flask import render_template, flash, redirect, url_for, request, session
+from app.blueprints import main
 from app.forms import LoginForm, SignupForm, PostForm, CommentForm, EditProfileForm
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
 from app.models import User, Post, Comment  
 
-@app.route('/')
-@app.route('/index')
+@main.route('/')
+@main.route('/index')
 def index():
     return render_template('index.html', title='Home', user=current_user)
 
-@app.route('/login', methods=['GET', 'POST'])
+@main.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
     if request.method == 'POST':
@@ -25,17 +27,17 @@ def login():
             
             login_user(user, remember=login_form.remember_me.data)
             flash('Logged in successfully!', 'success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('main.dashboard'))
         else:
             flash('Please correct errors in the form.', 'error') 
     return render_template('login.html', title='Log In', form=login_form)
 
-@app.route('/logout')
+@main.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
 
-@app.route('/signup', methods=['GET', 'POST'])
+@main.route('/signup', methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
@@ -46,10 +48,10 @@ def signup():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you signed up successfully!')
-        return redirect(url_for('login'))
+        return redirect(url_for('main.login'))
     return render_template('signup.html', title='Singn Up', form=signup_form)
 
-@app.route('/post', methods=['GET', 'POST'])
+@main.route('/post', methods=['GET', 'POST'])
 @login_required
 def post():
     post_form = PostForm()
@@ -58,10 +60,10 @@ def post():
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!', 'success')
-        return redirect(url_for('details', post_id=post.id, user_id=current_user.id))
+        return redirect(url_for('main.details', post_id=post.id, user_id=current_user.id))
     return render_template('post.html', title='Create Post', form=post_form, Legend='Create New Post', user=current_user)    
 
-@app.route('/details/<int:post_id>', methods=['GET', 'POST'])
+@main.route('/details/<int:post_id>', methods=['GET', 'POST'])
 @login_required
 def details(post_id):
     post = Post.query.get_or_404(post_id)
@@ -72,17 +74,17 @@ def details(post_id):
         db.session.add(comment)
         db.session.commit()
         flash('Your comment is now live!', 'success')
-        return redirect(url_for('details', post_id=post_id, user_id=current_user.id))
+        return redirect(url_for('main.details', post_id=post_id, user_id=current_user.id))
     return render_template('details.html', post=post, comments=comments, form=comment_form, user=current_user, comment_form=comment_form)
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@main.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     form=PostForm()
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=4)
     return render_template('dashboard.html', title='Dashboard', user=current_user, posts=posts, form=form, page=page)
 
-@app.route('/profile/<int:user_id>', methods=['GET', 'POST'])
+@main.route('/profile/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def profile(user_id):
     user = User.query.get_or_404(user_id)
@@ -95,13 +97,13 @@ def profile(user_id):
             current_user.about_me = editprofile_form.about_me.data
             db.session.commit()
             flash('Your changes have been saved.')
-            return redirect(url_for('profile', user_id=current_user.id))
+            return redirect(url_for('main.profile', user_id=current_user.id))
     elif request.method == 'GET' and user == current_user:
         editprofile_form.about_me.data = current_user.about_me
 
     return render_template('profile.html', user=user, posts=posts, comments=comments, form=editprofile_form)
 
-@app.route('/search')
+@main.route('/search')
 def search():
     keyword = request.args.get('keyword', '')
     page = request.args.get('page', 1, type=int)
