@@ -67,21 +67,46 @@ Follow these steps to get your development env running:
 1. Clone the repository:
   
    git clone https://github.com/EN-JAEYUNSIM/CITS5505-Group-Project.git
+   
+   ```
    cd CITS5505-Group-Project
+   ```
 
 2. Create a virtual environment:
-   python -m venv venv    # For Windows
-   python -m venv venv       # For Unix or MacOS
+
+   For Windows: 
+   ```
+   python -m venv venv
+   ```
+
+   For Unix or MacOS: 
+   ```
+   python -m venv venv
+   ```
 
 3. Activate the virtual environment:
-   .\venv\Scripts\activate    # For Windows
-   source venv/bin/activate   # For Unix or MacOS
+   
+   For Windows: 
+   ```
+   .\venv\Scripts\activate
+   ```
+
+   For Unix or MacOS: 
+   ```
+   source venv/bin/activate
+   ```
 
 4. Instal the required packages:
+   
+   ```
    pip install -r requirements.txt
+   ```
 
-3. Run the application:
+5. Run the application:
+   
+   ```
    flask run
+   ```
 
 ## Team Members
 
