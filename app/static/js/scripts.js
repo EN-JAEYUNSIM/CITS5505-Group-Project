@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 
     $('#edit-form').submit(function(event) {
-        event.preventDefault();  // 防止默认表单提交
+        event.preventDefault();  
         var aboutMeText = $('textarea[name="about_me"]').val();
         $.ajax({
             type: 'POST',

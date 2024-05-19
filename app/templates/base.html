@@ -25,25 +25,25 @@
     <header class="header">
         <div class="navbar">
             <div class="logo">
-                <a href="{{ url_for('index') }}" class="logo-box">
+                <a href="{{ url_for('main.index') }}" class="logo-box">
                     <img src="../static/images/diy.png" alt="logo">
                     <h1>DIY Corner</h1>
                 </a>
             </div>
             <div class="search-box">
-                <form action="{{ url_for('search') }}" method="GET" class="search-bar">
+                <form action="{{ url_for('main.search') }}" method="GET" class="search-bar">
                     <input name="keyword" id="keyword" class="input-text" placeholder="Search DIY Events" type="text">
                     <input name="submit" class="input-submit" value="Search" type="submit">
                 </form>
             </div>
             <div class="nav-links">
-                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('main.dashboard') }}">Dashboard</a>
                 {% if current_user.is_anonymous %}
-                    <a href="{{ url_for('login') }}">Log In</a>
-                    <a href="{{ url_for('signup') }}">Sign Up</a>
+                    <a href="{{ url_for('main.login') }}">Log In</a>
+                    <a href="{{ url_for('main.signup') }}">Sign Up</a>
                 {% else %}
-                    <a href="{{ url_for('profile', user_id=current_user.id) }}">My Profile</a>
-                    <a href="{{ url_for('logout') }}">Logout</a>
+                    <a href="{{ url_for('main.profile', user_id=current_user.id) }}">My Profile</a>
+                    <a href="{{ url_for('main.logout') }}">Logout</a>
                 {% endif %}
             </div>
         </div>

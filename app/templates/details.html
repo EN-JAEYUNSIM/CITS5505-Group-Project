@@ -19,7 +19,7 @@
             </div>
             <div class="comment-form">
                 <p>Add a comment</p>
-                <form action="{{ url_for('details', post_id=post.id) }}" method="post">
+                <form action="{{ url_for('main.details', post_id=post.id) }}" method="post">
                     {{ comment_form.hidden_tag() }}
                     {{ comment_form.content(class="comment-input", placeholder="Leave a comment...") }}
                     <p>
